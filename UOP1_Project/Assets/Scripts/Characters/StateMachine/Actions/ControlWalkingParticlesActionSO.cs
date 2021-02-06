@@ -10,9 +10,9 @@ public class ControlWalkingParticlesAction : StateAction
 	//Component references
 	private DustParticlesController _dustController;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_dustController = stateMachine.GetComponent<DustParticlesController>();
+		_dustController = gameObject.GetComponent<DustParticlesController>();
 	}
 
 	public override void OnStateEnter()

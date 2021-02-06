@@ -14,7 +14,7 @@ public class HasReceivedEventCondition : Condition
 
 	private bool _eventTriggered;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
 		_eventTriggered = false;
 		_originSO.voidEvent.OnEventRaised += EventReceived;

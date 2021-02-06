@@ -16,9 +16,9 @@ public class HasReachedRoamingDestination : Condition
 	private float _startTime;
 	private bool _agentDefined;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_agent = stateMachine.gameObject.GetComponent<NavMeshAgent>();
+		_agent = gameObject.GetComponent<NavMeshAgent>();
 		_agentDefined = _agent != null;
 	}
 

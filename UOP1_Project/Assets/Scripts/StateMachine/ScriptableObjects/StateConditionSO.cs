@@ -13,9 +13,10 @@ namespace UOP1.StateMachine.ScriptableObjects
 			if (!createdInstances.TryGetValue(this, out var obj))
 			{
 				var condition = CreateCondition();
-				condition._originSO = this;
 				createdInstances.Add(this, condition);
-				condition.Awake(stateMachine);
+				condition._originSO = this;
+				condition._stateMachine = stateMachine;
+				condition.Awake();
 
 				obj = condition;
 			}

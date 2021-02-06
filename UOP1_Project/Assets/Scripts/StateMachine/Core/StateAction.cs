@@ -1,31 +1,43 @@
-﻿using UOP1.StateMachine.ScriptableObjects;
+﻿using UnityEngine;
+using UOP1.StateMachine.ScriptableObjects;
 
 namespace UOP1.StateMachine
 {
 	/// <summary>
 	/// An object representing an action.
 	/// </summary>
-	public abstract class StateAction : IStateComponent
+	public abstract class StateAction
 	{
 		internal StateActionSO _originSO;
+		internal StateMachine _stateMachine;
 
 		/// <summary>
 		/// Use this property to access shared data from the <see cref="StateActionSO"/> that corresponds to this <see cref="StateAction"/>
 		/// </summary>
 		protected StateActionSO OriginSO => _originSO;
 
+		protected GameObject gameObject => _stateMachine.gameObject;
+		protected Transform transform => _stateMachine.transform;
+
 		/// <summary>
 		/// Called every frame the <see cref="StateMachine"/> is in a <see cref="State"/> with this <see cref="StateAction"/>.
 		/// </summary>
-		public abstract void OnUpdate();
+		public virtual void OnUpdate() { }
 
 		/// <summary>
 		/// Awake is called when creating a new instance. Use this method to cache the components needed for the action.
 		/// </summary>
 		/// <param name="stateMachine">The <see cref="StateMachine"/> this instance belongs to.</param>
-		public virtual void Awake(StateMachine stateMachine) { }
+		public virtual void Awake() { }
 
+		/// <summary>
+		/// Called when entering the State
+		/// </summary>
 		public virtual void OnStateEnter() { }
+
+		/// <summary>
+		/// Called when leaving the State
+		/// </summary>
 		public virtual void OnStateExit() { }
 
 		/// <summary>

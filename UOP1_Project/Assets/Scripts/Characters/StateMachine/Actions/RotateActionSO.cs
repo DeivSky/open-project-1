@@ -19,10 +19,10 @@ public class RotateAction : StateAction
 	private const float ROTATION_TRESHOLD = .02f; // Used to prevent NaN result causing rotation in a non direction
 	private RotateActionSO _originSO => (RotateActionSO)base.OriginSO; // The SO this StateAction spawned from
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
-		_transform = stateMachine.GetComponent<Transform>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
+		_transform = gameObject.GetComponent<Transform>();
 	}
 
 	public override void OnUpdate()

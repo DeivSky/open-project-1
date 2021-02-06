@@ -40,7 +40,7 @@ namespace UOP1.StateMachine.ScriptableObjects
 					transitions.Add(new StateTransition(toState, conditions, resultGroups));
 				}
 
-				state._transitions = transitions.ToArray();
+				state.SetTransitions(transitions.ToArray());
 			}
 
 			return states.Count > 0 ? states[0]

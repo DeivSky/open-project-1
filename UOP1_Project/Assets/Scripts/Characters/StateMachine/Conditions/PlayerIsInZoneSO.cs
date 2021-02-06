@@ -22,9 +22,9 @@ public class PlayerIsInZone : Condition
 
 	private Critter _critter;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_critter = stateMachine.GetComponent<Critter>();
+		_critter = gameObject.GetComponent<Critter>();
 	}
 
 	protected override bool Statement()

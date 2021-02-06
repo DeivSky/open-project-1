@@ -14,19 +14,10 @@ public class PlayAudioCueActionSO : StateActionSO<PlayAudioCueAction>
 
 public class PlayAudioCueAction : StateAction
 {
-	private Transform _stateMachineTransform;
-
 	private PlayAudioCueActionSO _originSO => (PlayAudioCueActionSO)base.OriginSO; // The SO this StateAction spawned from
-
-	public override void Awake(StateMachine stateMachine)
-	{
-		_stateMachineTransform = stateMachine.transform;
-	}
-
-	public override void OnUpdate() { }
 
 	public override void OnStateEnter()
 	{
-		_originSO.audioCueEventChannel.RaisePlayEvent(_originSO.audioCue, _originSO.audioConfiguration, _stateMachineTransform.position);
+		_originSO.audioCueEventChannel.RaisePlayEvent(_originSO.audioCue, _originSO.audioConfiguration, transform.position);
 	}
 }

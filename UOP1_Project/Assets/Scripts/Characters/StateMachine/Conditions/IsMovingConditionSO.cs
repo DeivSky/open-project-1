@@ -13,9 +13,9 @@ public class IsMovingCondition : Condition
 	private Protagonist _protagonistScript;
 	private IsMovingConditionSO _originSO => (IsMovingConditionSO)base.OriginSO; // The SO this Condition spawned from
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
 	}
 
 	protected override bool Statement()

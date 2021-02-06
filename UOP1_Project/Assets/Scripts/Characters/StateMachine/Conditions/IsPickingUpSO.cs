@@ -10,9 +10,9 @@ public class IsPickingUpCondition : Condition
 	//Component references
 	private InteractionManager _interactScript;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_interactScript = stateMachine.GetComponentInChildren<InteractionManager>();
+		_interactScript = gameObject.GetComponentInChildren<InteractionManager>();
 	}
 
 	protected override bool Statement()

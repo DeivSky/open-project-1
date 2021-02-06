@@ -15,9 +15,9 @@ public class HorizontalMoveAction : StateAction
 	private Protagonist _protagonistScript;
 	private HorizontalMoveActionSO _originSO => (HorizontalMoveActionSO)base.OriginSO; // The SO this StateAction spawned from
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
 	}
 
 	public override void OnUpdate()

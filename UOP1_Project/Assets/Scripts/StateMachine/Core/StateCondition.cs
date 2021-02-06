@@ -1,20 +1,25 @@
-﻿using UOP1.StateMachine.ScriptableObjects;
+﻿using UnityEngine;
+using UOP1.StateMachine.ScriptableObjects;
 
 namespace UOP1.StateMachine
 {
 	/// <summary>
 	/// Class that represents a conditional statement.
 	/// </summary>
-	public abstract class Condition : IStateComponent
+	public abstract class Condition
 	{
 		private bool _isCached = false;
 		private bool _cachedStatement = default;
 		internal StateConditionSO _originSO;
+		internal StateMachine _stateMachine;
 
 		/// <summary>
 		/// Use this property to access shared data from the <see cref="StateConditionSO"/> that corresponds to this <see cref="Condition"/>
 		/// </summary>
 		protected StateConditionSO OriginSO => _originSO;
+
+		protected GameObject gameObject => _stateMachine.gameObject;
+		protected Transform transform => _stateMachine.transform;
 
 		/// <summary>
 		/// Specify the statement to evaluate.
@@ -45,8 +50,16 @@ namespace UOP1.StateMachine
 		/// Awake is called when creating a new instance. Use this method to cache the components needed for the condition.
 		/// </summary>
 		/// <param name="stateMachine">The <see cref="StateMachine"/> this instance belongs to.</param>
-		public virtual void Awake(StateMachine stateMachine) { }
+		public virtual void Awake() { }
+
+		/// <summary>
+		/// Called when entering the State
+		/// </summary>
 		public virtual void OnStateEnter() { }
+
+		/// <summary>
+		/// Called when leaving the State
+		/// </summary>
 		public virtual void OnStateExit() { }
 	}
 
@@ -72,7 +85,7 @@ namespace UOP1.StateMachine
 			bool isMet = statement == _expectedResult;
 
 #if UNITY_EDITOR
-			_stateMachine._debugger.TransitionConditionResult(_condition._originSO.name, statement, isMet);
+			_stateMachine._debugger.TransitionConditionResult(_condition, statement, isMet);
 #endif
 			return isMet;
 		}

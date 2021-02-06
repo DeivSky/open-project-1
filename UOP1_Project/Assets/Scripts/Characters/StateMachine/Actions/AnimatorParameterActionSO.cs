@@ -39,9 +39,9 @@ public class AnimatorParameterAction : StateAction
 		_parameterHash = parameterHash;
 	}
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_animator = stateMachine.GetComponent<Animator>();
+		_animator = gameObject.GetComponent<Animator>();
 	}
 
 	public override void OnStateEnter()

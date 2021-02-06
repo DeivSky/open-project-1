@@ -12,9 +12,9 @@ public class DescendAction : StateAction
 
 	private float _verticalMovement;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
 	}
 
 	public override void OnStateEnter()

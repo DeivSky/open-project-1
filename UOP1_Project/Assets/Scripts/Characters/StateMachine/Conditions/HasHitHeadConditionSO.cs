@@ -12,11 +12,11 @@ public class HasHitHeadCondition : Condition
 	private CharacterController _characterController;
 	private Transform _transform;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_transform = stateMachine.GetComponent<Transform>();
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
-		_characterController = stateMachine.GetComponent<CharacterController>();
+		_transform = gameObject.GetComponent<Transform>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
+		_characterController = gameObject.GetComponent<CharacterController>();
 	}
 
 	protected override bool Statement()

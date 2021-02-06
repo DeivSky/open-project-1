@@ -18,9 +18,9 @@ public class GetHitFlashingEffectAction : StateAction
 	private Color _baseTintColor;
 	private float _innerFlashingTime;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		Damageable attackableEntity = stateMachine.GetComponent<Damageable>();
+		Damageable attackableEntity = gameObject.GetComponent<Damageable>();
 		GetHitEffectConfigSO getHitEffectConfig = attackableEntity.GetHitEffectConfig;
 
 		// Take the last one if many.

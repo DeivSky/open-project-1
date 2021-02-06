@@ -10,9 +10,9 @@ public class IsHoldingExtraActionCondition : Condition
 	//Component references
 	private Protagonist _protagonistScript;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
 	}
 
 	protected override bool Statement()

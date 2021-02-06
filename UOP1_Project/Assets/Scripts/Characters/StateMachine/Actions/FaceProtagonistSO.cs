@@ -12,11 +12,9 @@ public class FaceProtagonistSO : StateActionSO
 public class FaceProtagonist : StateAction
 {
 	TransformAnchor _protagonist;
-	Transform _actor;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_actor = stateMachine.transform;
 		_protagonist = ((FaceProtagonistSO)OriginSO).playerAnchor;
 	}
 
@@ -24,16 +22,11 @@ public class FaceProtagonist : StateAction
 	{
 		if (_protagonist.isSet)
 		{
-			Vector3 relativePos = _protagonist.Transform.position - _actor.position;
+			Vector3 relativePos = _protagonist.Transform.position - transform.position;
 			relativePos.y = 0f; // Force rotation to be only on Y axis.
 
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
-			_actor.rotation = rotation;
+			transform.rotation = rotation;
 		}
-	}
-
-	public override void OnStateEnter()
-	{
-
 	}
 }

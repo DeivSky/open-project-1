@@ -25,9 +25,9 @@ public class AerialMovementAction : StateAction
 
 	private Protagonist _protagonist;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonist = stateMachine.GetComponent<Protagonist>();
+		_protagonist = gameObject.GetComponent<Protagonist>();
 	}
 
 	public override void OnUpdate()

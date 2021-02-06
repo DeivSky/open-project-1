@@ -10,10 +10,10 @@ public class IsSlidingCondition : Condition
 	private CharacterController _characterController;
 	private Protagonist _protagonistScript;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_characterController = stateMachine.GetComponent<CharacterController>();
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
+		_characterController = gameObject.GetComponent<CharacterController>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
 	}
 
 	protected override bool Statement()

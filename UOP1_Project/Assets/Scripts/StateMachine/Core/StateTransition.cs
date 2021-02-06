@@ -1,19 +1,13 @@
 ﻿namespace UOP1.StateMachine
 {
-	public class StateTransition : IStateComponent
+	public sealed class StateTransition
 	{
-		private State _targetState;
-		private StateCondition[] _conditions;
-		private int[] _resultGroups;
-		private bool[] _results;
+		internal readonly State _targetState;
+		internal readonly StateCondition[] _conditions;
+		private readonly int[] _resultGroups;
+		private readonly bool[] _results;
 
-		internal StateTransition() { }
 		public StateTransition(State targetState, StateCondition[] conditions, int[] resultGroups = null)
-		{
-			Init(targetState, conditions, resultGroups);
-		}
-
-		internal void Init(State targetState, StateCondition[] conditions, int[] resultGroups = null)
 		{
 			_targetState = targetState;
 			_conditions = conditions;
@@ -32,22 +26,11 @@
 			return state != null;
 		}
 
-		public void OnStateEnter()
-		{
-			for (int i = 0; i < _conditions.Length; i++)
-				_conditions[i]._condition.OnStateEnter();
-		}
-
-		public void OnStateExit()
-		{
-			for (int i = 0; i < _conditions.Length; i++)
-				_conditions[i]._condition.OnStateExit();
-		}
 
 		private bool ShouldTransition()
 		{
 #if UNITY_EDITOR
-			_targetState._stateMachine._debugger.TransitionEvaluationBegin(_targetState._originSO.name);
+			_targetState._stateMachine._debugger.TransitionEvaluationBegin(_targetState);
 #endif
 
 			int count = _resultGroups.Length;
@@ -62,16 +45,10 @@
 				ret = ret || _results[i];
 
 #if UNITY_EDITOR
-			_targetState._stateMachine._debugger.TransitionEvaluationEnd(ret, _targetState._actions);
+			_targetState._stateMachine._debugger.TransitionEvaluationEnd(ret, _targetState);
 #endif
 
 			return ret;
-		}
-
-		internal void ClearConditionsCache()
-		{
-			for (int i = 0; i < _conditions.Length; i++)
-				_conditions[i]._condition.ClearStatementCache();
 		}
 	}
 }

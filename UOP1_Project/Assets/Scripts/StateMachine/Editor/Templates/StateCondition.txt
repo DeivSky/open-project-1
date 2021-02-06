@@ -12,7 +12,7 @@ public class #RUNTIMENAME# : Condition
 {
 	protected new #SCRIPTNAME# OriginSO => (#SCRIPTNAME#)base.OriginSO;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
 	}
 	

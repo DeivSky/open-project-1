@@ -29,19 +29,14 @@ public class RoamingAroundSpawningPositionAction : StateAction
 
 	private Vector3 _roamingTargetPosition;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
 		RoamingAroundSpawningPositionActionSO config = (RoamingAroundSpawningPositionActionSO)OriginSO;
-		_agent = stateMachine.gameObject.GetComponent<NavMeshAgent>();
+		_agent = gameObject.GetComponent<NavMeshAgent>();
 		_isActiveAgent = _agent != null && _agent.isActiveAndEnabled && _agent.isOnNavMesh;
-		_startPosition = stateMachine.gameObject.transform.position;
+		_startPosition = transform.position;
 		_roamingSpeed = config.RoamingSpeed;
 		_roamingDistance = config.RoamingDistance;
-	}
-
-	public override void OnUpdate()
-	{
-
 	}
 
 	public override void OnStateEnter()
@@ -53,11 +48,6 @@ public class RoamingAroundSpawningPositionAction : StateAction
 			_agent.isStopped = false;
 			_agent.SetDestination(_roamingTargetPosition);
 		}
-	}
-
-	public override void OnStateExit()
-	{
-
 	}
 
 	// Compute a random target position around the starting position.

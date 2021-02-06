@@ -9,9 +9,9 @@ public class IsCharacterControllerGroundedCondition : Condition
 {
 	private CharacterController _characterController;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_characterController = stateMachine.GetComponent<CharacterController>();
+		_characterController = gameObject.GetComponent<CharacterController>();
 	}
 
 	protected override bool Statement() => _characterController.isGrounded;

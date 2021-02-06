@@ -3,6 +3,7 @@
 using System;
 using System.Text;
 using UnityEngine;
+using UOP1.StateMachine.ScriptableObjects;
 
 namespace UOP1.StateMachine.Debugging
 {
@@ -48,12 +49,12 @@ namespace UOP1.StateMachine.Debugging
 			currentState = stateMachine._currentState._originSO.name;
 		}
 
-		internal void TransitionEvaluationBegin(string targetState)
+		internal void TransitionEvaluationBegin(State targetState)
 		{
-			_targetState = targetState;
-
 			if (!debugTransitions)
 				return;
+
+			_targetState = targetState._originSO.name;
 
 			_logBuilder.Clear();
 			_logBuilder.AppendLine($"{_stateMachine.name} state changed");
@@ -66,12 +67,12 @@ namespace UOP1.StateMachine.Debugging
 			}
 		}
 
-		internal void TransitionConditionResult(string conditionName, bool result, bool isMet)
+		internal void TransitionConditionResult(Condition condition, bool result, bool isMet)
 		{
 			if (!debugTransitions || _logBuilder.Length == 0 || !appendConditionsInfo)
 				return;
 
-			_logBuilder.Append($"    {THICK_ARROW} {conditionName} == {result}");
+			_logBuilder.Append($"    {THICK_ARROW} {condition._originSO.name} == {result}");
 
 			if (isMet)
 				_logBuilder.AppendLine($" [{CHECK_MARK}]");
@@ -79,24 +80,25 @@ namespace UOP1.StateMachine.Debugging
 				_logBuilder.AppendLine($" [{UNCHECK_MARK}]");
 		}
 
-		internal void TransitionEvaluationEnd(bool passed, StateAction[] actions)
+		internal void TransitionEvaluationEnd(bool passed, State state)
 		{
-			if (passed)
-				currentState = _targetState;
 
 			if (!debugTransitions || _logBuilder.Length == 0)
 				return;
 
 			if (passed)
+				currentState = _targetState;
+
+			if (passed)
 			{
-				LogActions(actions);
+				LogActions(state);
 				PrintDebugLog();
 			}
 
 			_logBuilder.Clear();
 		}
 
-		private void LogActions(StateAction[] actions)
+		private void LogActions(State state)
 		{
 			if (!appendActionsInfo)
 				return;
@@ -104,9 +106,9 @@ namespace UOP1.StateMachine.Debugging
 			_logBuilder.AppendLine();
 			_logBuilder.AppendLine("State Actions:");
 
-			foreach (StateAction action in actions)
+			foreach (StateActionSO action in state._originSO._actions)
 			{
-				_logBuilder.AppendLine($"    {THICK_ARROW} {action._originSO.name}");
+				_logBuilder.AppendLine($"    {THICK_ARROW} {action.name}");
 			}
 		}
 

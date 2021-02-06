@@ -15,9 +15,9 @@ public class IsActuallyMovingCondition : Condition
 	private float _treshold;
 	private CharacterController _characterController;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_characterController = stateMachine.GetComponent<CharacterController>();
+		_characterController = gameObject.GetComponent<CharacterController>();
 	}
 
 	public IsActuallyMovingCondition(float treshold)

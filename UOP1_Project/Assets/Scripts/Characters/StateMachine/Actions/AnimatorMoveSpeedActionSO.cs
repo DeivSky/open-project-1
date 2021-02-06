@@ -29,10 +29,10 @@ public class AnimatorMoveSpeedAction : StateAction
 		_parameterHash = parameterHash;
 	}
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_animator = stateMachine.GetComponent<Animator>();
-		_protagonist = stateMachine.GetComponent<Protagonist>();
+		_animator = gameObject.GetComponent<Animator>();
+		_protagonist = gameObject.GetComponent<Protagonist>();
 	}
 
 	public override void OnUpdate()

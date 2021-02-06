@@ -12,9 +12,9 @@ public class ActivateAttack : StateAction
 {
 	private Attack _attack;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_attack = stateMachine.gameObject.GetComponentInChildren<Attack>();
+		_attack = gameObject.GetComponentInChildren<Attack>();
 	}
 
 	public override void OnUpdate()

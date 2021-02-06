@@ -13,10 +13,10 @@ public class ClearInputCache_OnEnter : StateAction
 	private Protagonist _protagonist;
 	private InteractionManager _interactionManager;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonist = stateMachine.GetComponent<Protagonist>();
-		_interactionManager = stateMachine.GetComponentInChildren<InteractionManager>();
+		_protagonist = gameObject.GetComponent<Protagonist>();
+		_interactionManager = gameObject.GetComponentInChildren<InteractionManager>();
 	}
 
 	public override void OnUpdate()

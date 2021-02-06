@@ -15,9 +15,9 @@ public class IsAttackReloadedCondition : Condition
 	private float _startTime;
 	private float _reloadDuration;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_reloadDuration = stateMachine.GetComponent<Attack>().AttackConfig.AttackReloadDuration;
+		_reloadDuration = gameObject.GetComponent<Attack>().AttackConfig.AttackReloadDuration;
 	}
 
 	public override void OnStateEnter()

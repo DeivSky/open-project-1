@@ -14,9 +14,9 @@ public class IsEntityGettingHit : Condition
 
 	private Damageable _damageableEntity;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_damageableEntity = stateMachine.GetComponent<Damageable>();
+		_damageableEntity = gameObject.GetComponent<Damageable>();
 	}
 
 	protected override bool Statement()

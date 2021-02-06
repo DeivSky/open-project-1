@@ -12,9 +12,9 @@ public class ResetGetHitState : StateAction
 {
 	private Damageable _damageableEntity;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_damageableEntity = stateMachine.GetComponent<Damageable>();
+		_damageableEntity = gameObject.GetComponent<Damageable>();
 	}
 
 	public override void OnUpdate()

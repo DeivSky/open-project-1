@@ -18,9 +18,9 @@ public class AscendAction : StateAction
 	private float _gravityContributionMultiplier;
 	private AscendActionSO _originSO => (AscendActionSO)base.OriginSO; // The SO this StateAction spawned from
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
 	}
 
 	public override void OnStateEnter()

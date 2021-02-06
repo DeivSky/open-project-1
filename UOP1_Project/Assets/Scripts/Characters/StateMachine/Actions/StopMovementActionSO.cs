@@ -19,9 +19,9 @@ public class StopMovement : StateAction
 	private Protagonist _protagonist;
 	private new StopMovementActionSO OriginSO => (StopMovementActionSO)base.OriginSO;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonist = stateMachine.GetComponent<Protagonist>();
+		_protagonist = gameObject.GetComponent<Protagonist>();
 	}
 
 	public override void OnUpdate()

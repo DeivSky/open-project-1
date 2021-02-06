@@ -11,10 +11,10 @@ public class ApplyMovementVectorAction : StateAction
 	private Protagonist _protagonistScript;
 	private CharacterController _characterController;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_protagonistScript = stateMachine.GetComponent<Protagonist>();
-		_characterController = stateMachine.GetComponent<CharacterController>();
+		_protagonistScript = gameObject.GetComponent<Protagonist>();
+		_characterController = gameObject.GetComponent<CharacterController>();
 	}
 
 	public override void OnUpdate()

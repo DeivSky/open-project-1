@@ -9,7 +9,6 @@ public class PlayLandParticlesAction : StateAction
 {
 	//Component references
 	private DustParticlesController _dustController;
-	private Transform _transform;
 
 	private float _coolDown = 0.3f;
 	private float t = 0f;
@@ -18,20 +17,19 @@ public class PlayLandParticlesAction : StateAction
 	private float _fallEndY = 0f;
 	private float _maxFallDistance = 4f; //Used to adjust particle emission intensity
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_dustController = stateMachine.GetComponent<DustParticlesController>();
-		_transform = stateMachine.transform;
+		_dustController = gameObject.GetComponent<DustParticlesController>();
 	}
 
 	public override void OnStateEnter()
 	{
-		_fallStartY = _transform.position.y;
+		_fallStartY = transform.position.y;
 	}
 
 	public override void OnStateExit()
 	{
-		_fallEndY = _transform.position.y;
+		_fallEndY = transform.position.y;
 		float dY = Mathf.Abs(_fallStartY - _fallEndY);
 		float fallIntensity = Mathf.InverseLerp(0, _maxFallDistance, dY);
 
@@ -41,6 +39,4 @@ public class PlayLandParticlesAction : StateAction
 			t = Time.time;
 		}
 	}
-
-	public override void OnUpdate() { }
 }

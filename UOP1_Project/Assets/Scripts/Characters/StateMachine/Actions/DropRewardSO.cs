@@ -11,12 +11,10 @@ public class DropRewardSO : StateActionSO
 public class DropReward : StateAction
 {
 	private DroppableRewardConfigSO _dropRewardConfig;
-	private Transform _currentTransform;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
-		_dropRewardConfig = stateMachine.GetComponent<Damageable>().DropableRewardConfig;
-		_currentTransform = stateMachine.transform;
+		_dropRewardConfig = gameObject.GetComponent<Damageable>().DropableRewardConfig;
 	}
 
 	public override void OnUpdate()
@@ -26,7 +24,7 @@ public class DropReward : StateAction
 
 	public override void OnStateEnter()
 	{
-		DropAllRewards(_currentTransform.position);
+		DropAllRewards(transform.position);
 	}
 
 	private void DropAllRewards(Vector3 postion)

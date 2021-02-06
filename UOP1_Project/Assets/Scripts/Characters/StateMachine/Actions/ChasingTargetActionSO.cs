@@ -25,10 +25,10 @@ public class ChasingTargetAction : StateAction
 	private NavMeshAgent _agent;
 	private bool _isActiveAgent;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake()
 	{
 		_config = (ChasingTargetActionSO)OriginSO;
-		_agent = stateMachine.gameObject.GetComponent<NavMeshAgent>();
+		_agent = gameObject.GetComponent<NavMeshAgent>();
 		_isActiveAgent = _agent != null && _agent.isActiveAndEnabled && _agent.isOnNavMesh;
 	}
 
