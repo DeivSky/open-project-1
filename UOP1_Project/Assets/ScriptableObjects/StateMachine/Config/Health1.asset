@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d5f6fd99b3b3b54c8d565fdfc894d1f, type: 3}
-  m_Name: IsAttackReloadedCondition
+  m_Script: {fileID: 11500000, guid: e005b717defd93a4c81276fd8caab626, type: 3}
+  m_Name: Health1
   m_EditorClassIdentifier: 
-  cacheResult: 1
+  _maxHealth: 1
